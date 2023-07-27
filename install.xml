@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+  <name><![CDATA[Maintenance mode alert]]></name>
+  <code><![CDATA[maintenance_mode_alert]]></code>
+	<version><![CDATA[1.0]]></version>
+	<author><![CDATA[REDS PRAI]]></author>
+	<link><![CDATA[https://www.agenciaprai.com/]]></link>
+		
+	<file path="admin/controller/common/header.php" error="skip">
+		<operation>
+			<search><![CDATA[return $this->load->view('common/header', $data);]]></search>
+			<add position="before"><![CDATA[
+			// maintenance info
+			$data['maintenance'] = $this->config->get('config_maintenance');
+			]]></add>
+		</operation>
+	</file>
+	<file path="admin/language/pt-br/common/header.php" error="skip">
+			<operation>
+			<search><![CDATA[// Text]]></search>
+			<add position="before"><![CDATA[
+			$_['text_maintenance'] = '<h4 style="margin-bottom: 0;"><i class="fa fa-exclamation-triangle"></i> <b>ATENÇÃO</b> loja definida para <b>manutenção</b></h4>';
+$_['text_maintenance_info']        = '<p style="font-size: 10px;">Não é possivel vender ou promover qualquer acesso a informações ao visitante.Se você definiu isso por engano, ou se isso foi planejado, mais tarde basta ir em configurações da loja e retornar para o modo produção.</p>';
+			]]></add>
+		</operation>
+	</file>
+	<file path="admin/language/en-gb/common/header.php" error="skip">
+			<operation>
+			<search><![CDATA[// Text]]></search>
+			<add position="before"><![CDATA[
+			$_['text_maintenance'] = '<h4 style="margin-bottom: 0;"><i class="fa fa-exclamation-triangle"></i> <b>ATTENTION</b> store set to <b>MAINTENANCE</b></h4>';
+$_['text_maintenance_info']        = '<p style="font-size: 10px;">It is not possible to sell or promote any access to visitor information. If you set this by mistake, or if this was planned, later on just go to store settings and return to production mode.</p>';
+			]]></add>
+		</operation>
+	</file>
+	<file path="admin/view/template/common/header.twig" error="skip">
+			<operation>
+			<search><![CDATA[</header>]]></search>
+			<add position="after"><![CDATA[
+			{% if maintenance %}
+			<div class="alert alert-danger" style="margin: 5px 5px 0 60px;">
+				{{ text_maintenance }}
+				{{ text_maintenance_info }}
+			</div>
+			{% endif %}
+			]]></add>
+		</operation>
+	</file>
+		
+</modification>
