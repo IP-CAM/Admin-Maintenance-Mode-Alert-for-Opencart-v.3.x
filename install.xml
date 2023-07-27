@@ -35,10 +35,10 @@ $_['text_maintenance_info']        = '<p style="font-size: 10px;">It is not poss
 	</file>
 	<file path="admin/view/template/common/header.twig" error="skip">
 			<operation>
-			<search><![CDATA[</header>]]></search>
+			<search><![CDATA[<body>]]></search>
 			<add position="after"><![CDATA[
 			{% if maintenance %}
-			<div class="alert alert-danger" style="margin: 5px 5px 0 60px;">
+			<div class="alert alert-danger" style="margin: 0;border-radius: 0;">
 				{{ text_maintenance }}
 				{{ text_maintenance_info }}
 			</div>
